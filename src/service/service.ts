@@ -12,18 +12,18 @@ instance.interceptors.request.use(
     const accessToken = getAccessToken();
 
     if (!accessToken) {
-      // window.location.href = "/log-in";
+      window.location.href = "/log-in";
       return config;
     }
 
     config.headers["Content-Type"] = "application/json";
     config.headers["Authorization"] = `Bearer ${accessToken}`;
-    console.log(config);
+    // console.log(config);
 
     return config;
   },
   (error: AxiosError) => {
-    console.log(error);
+    // console.log(error);
     return Promise.reject(error);
   }
 );
@@ -35,8 +35,8 @@ instance.interceptors.response.use(
   async (error) => {
     console.log(error);
     if (error.response?.status === 403) {
-      await tokenRefresh(instance);
-      const accessToken = getAccessToken();
+      const accessToken = await tokenRefresh(instance);
+
       error.config.headers.Authorization = `Bearer ${accessToken}`;
       // 중단된 요청을(에러난 요청)을 토큰 갱신 후 재요청
       return instance(error.config);
