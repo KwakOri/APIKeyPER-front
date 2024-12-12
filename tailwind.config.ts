@@ -13,6 +13,12 @@ export default {
         pretendard: ['var(--font-pretendard)'],
       },
       colors: {
+        intent: {
+          expired: "#A1A1A1",
+          dangerous:"#FF3535",
+          warning: "#FF9925",
+          safe: "#3BDB39",
+        },
         primary: {
           95: "#000000",
           85: "#2d2d2d",

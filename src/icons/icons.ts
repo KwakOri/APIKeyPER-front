@@ -5,6 +5,7 @@ import IC_Edit from "/public/svgs/ic_edit.svg";
 import IC_ExpiryDate from "/public/svgs/ic_expiry_date.svg";
 import IC_LogIn from "/public/svgs/ic_log_in.svg";
 import IC_LogOut from "/public/svgs/ic_log_out.svg";
+import IC_Menu from "/public/svgs/ic_menu.svg";
 import IC_MoreOptions from "/public/svgs/ic_more_options.svg";
 import IC_Paste from "/public/svgs/ic_paste.svg";
 import IC_Plus from "/public/svgs/ic_plus.svg";
@@ -24,6 +25,7 @@ export const IconMap = {
   IC_Plus,
   IC_Send,
   IC_Success,
+  IC_Menu,
 } as const;
 
 export type IconMapTypes = keyof typeof IconMap;

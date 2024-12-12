@@ -1,67 +1,33 @@
-"use client";
+import PageNavBar from "@/components/PageNavBar";
+import TokenList from "@/components/TokenList";
+import { dummyTokens } from "@/data";
+import Mobile from "@/layouts/Mobile";
 
-import { logIn } from "@/service/auth";
-import { getMyTokenDatas } from "@/service/tokenData";
-import { handleAllowNotification } from "@/utils/firebase/firebaseUtils";
-import { useEffect, useState } from "react";
-
-export default function Home() {
-  console.log("re-rendering");
-  const [fcmToken, setFcmToken] = useState<string | null>(null);
-  const [accessToken, setAccessToken] = useState<string | null>(null);
-  const [isPending, setIsPending] = useState<boolean>(false);
-  const [userId, serUserId] = useState<string | null>(null);
-  useEffect(() => {
-    const getFCMToken = async () => {
-      const token = await handleAllowNotification();
-      setFcmToken(token || null);
-    };
-    getFCMToken();
-  }, []);
-
-  useEffect(() => {
-    const getAccessToken = () => {
-      const token = localStorage.getItem("ACCESS_TOKEN");
-      setAccessToken(token || null);
-    };
-
-    getAccessToken();
-    setIsPending(false);
-  }, [isPending]);
-
-  const handleLogIn = async () => {
-    const accessToken = await logIn();
-    setAccessToken(accessToken);
-    setIsPending(true);
-  };
+const HomePage = () => {
+  const tokens = structuredClone(dummyTokens).sort(
+    (a, b) =>
+      new Date(a.tokenExpiryDate).getTime() -
+      new Date(b.tokenExpiryDate).getTime()
+  );
+  const expiringSoonTokens = tokens
+    .filter((token) => {
+      const daysUntilExpiration = Math.ceil(
+        (new Date(token.tokenExpiryDate).getTime() - new Date().getTime()) /
+          (1000 * 60 * 60 * 24)
+      );
+      return daysUntilExpiration <= 30 && daysUntilExpiration >= 1;
+    })
+    .slice(0, 4);
 
   return (
-    <main className="w-screen h-screen flex justify-center items-center">
-      <section className=" w-80 flex flex-col gap-4">
-        <div>
-          <h2>FCM TOKEN</h2>
-          <p className="w-full h-full break-words p-2">{fcmToken}</p>
-        </div>
-
-        <div>
-          <h2>ACCESS TOKEN</h2>
-          <p className="w-full h-full break-words p-2">{accessToken}</p>
-        </div>
-
-        <p>현재 유저 : {userId}</p>
-        <button
-          className="p-2 bg-white text-black rounded-full"
-          onClick={handleLogIn}
-        >
-          로그인하기
-        </button>
-        <button
-          className="p-2 bg-white text-black rounded-full"
-          onClick={getMyTokenDatas}
-        >
-          내 토큰 조회하기
-        </button>
-      </section>
-    </main>
+    <Mobile>
+      <PageNavBar />
+      <div className="px-2 pt-4 pb-8 flex flex-col gap-8">
+        <TokenList title={"Keys expiring soon"} tokens={expiringSoonTokens} />
+        <TokenList title={"My keys"} tokens={tokens} />
+      </div>
+    </Mobile>
   );
-}
+};
+
+export default HomePage;

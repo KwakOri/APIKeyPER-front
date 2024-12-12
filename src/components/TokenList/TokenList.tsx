@@ -1,0 +1,35 @@
+import Divider from "@/components/Divider/Divider";
+import SectionTitle from "@/components/SectionTitle/SectionTitle";
+import TokenData from "@/components/TokenData";
+import { TokenSchema } from "@/data";
+import Link from "next/link";
+
+interface TokenListProps {
+  tokens: TokenSchema[];
+  title: string;
+}
+
+const TokenList = ({ tokens, title }: TokenListProps) => {
+  return (
+    <section className="flex flex-col gap-4">
+      <SectionTitle>{title}</SectionTitle>
+      <ul className="flex flex-col gap-2">
+        {tokens.map((token, index) => (
+          <>
+            <li
+              key={token.id}
+              className="p-2 rounded-lg hover:bg-primary-55/20"
+            >
+              <Link href={`/token/${token.id}`}>
+                <TokenData tokenData={token} />
+              </Link>
+            </li>
+            {index < tokens.length - 1 && <Divider />}
+          </>
+        ))}
+      </ul>
+    </section>
+  );
+};
+
+export default TokenList;
