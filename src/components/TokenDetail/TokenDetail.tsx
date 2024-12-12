@@ -1,6 +1,6 @@
 "use client";
 
-import Button from "@/components/Button";
+import Button from "@/components/Buttons/Button";
 import Input from "@/components/Input";
 import SVGIcon from "@/components/SVGIcon";
 import { TokenSchema } from "@/data";
@@ -42,21 +42,21 @@ const TokenDetail = ({ tokenData }: TokenDetailProps) => {
           <SVGIcon icon={"IC_Cancel"} />
         </button>
       </div>
-      <div className="flex gap-2 items-center">
+      <div className="flex gap-4 items-center">
         <div className="bg-primary-55 w-10 h-10 rounded-lg"></div>
-        <div className="flex flex-col gap-2 items-center grow">
+        <div className="flex flex-col gap-2 items-start grow">
           <h3 className="text-xl text-primary-85 font-semibold">{tokenName}</h3>
           <p className="text-[14px] text-primary-55">{tokenFrom}</p>
         </div>
       </div>
-      <div className="flex justify-around">
-        <div className="">
+      <div className="flex justify-around px-1">
+        <div className="grow">
           <h4 className="text-sm text-primary-55 ">Created Date</h4>
           <p className="text-primary-85 font-semibold">
             {dayjs(tokenCreatedDate).format("YY.MM.DD")}
           </p>
         </div>
-        <div>
+        <div className="grow">
           <h4 className="text-sm text-primary-55 ">Expiry Date</h4>
           <p className="text-primary-85 font-semibold">
             {dayjs(tokenExpiryDate).format("YY.MM.DD")}

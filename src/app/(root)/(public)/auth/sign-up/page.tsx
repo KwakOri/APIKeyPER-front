@@ -1,6 +1,6 @@
 "use client";
 
-import Button from "@/components/Button";
+import Button from "@/components/Buttons/Button";
 import Input from "@/components/Input";
 import PageTitle from "@/components/PageTitle";
 import SVGIcon from "@/components/SVGIcon";
