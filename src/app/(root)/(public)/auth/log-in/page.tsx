@@ -1,5 +1,6 @@
 import Button from "@/components/Button";
 import Input from "@/components/Input";
+import PageTitle from "@/components/PageTitle";
 import Mobile from "@/layouts/Mobile";
 
 const LogInPage = () => {
@@ -7,9 +8,7 @@ const LogInPage = () => {
     <Mobile>
       <div className="w-full h-full px-14 flex flex-col justify-center">
         <div className="flex justify-center items-center h-[120px] w-full mb-[60px]">
-          <h1 className="text-[36px] text-primary-85 font-extrabold">
-            APIKeyPER
-          </h1>
+          <PageTitle>APIKeyPER</PageTitle>
         </div>
         <div className={"flex flex-col gap-3"}>
           <Input
