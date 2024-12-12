@@ -1,7 +1,7 @@
 import Button from "@/components/Button";
 import Input from "@/components/Input";
 
-const page = () => {
+const TestPage = () => {
   return (
     <div className="h-screen w-full flex justify-center items-center">
       <div className="w-[375px] h-[660px] bg-white">
@@ -18,4 +18,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default TestPage;

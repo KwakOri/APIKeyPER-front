@@ -1,5 +1,6 @@
 import { ButtonHTMLAttributes, PropsWithChildren } from "react";
 
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {}
 
 const Button = ({ children, ...props }: PropsWithChildren<ButtonProps>) => {
