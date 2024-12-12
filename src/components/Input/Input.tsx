@@ -15,7 +15,7 @@ const Input = ({ id, label, ...props }: InputProps) => {
       )}
       <input
         className={
-          "text-sm h-11 w-full px-4 placeholder-primary-55 text-primary-75 rounded-lg border border-primary-55"
+          "text-sm h-11 w-full px-4 placeholder-primary-55 text-primary-75 rounded-lg border border-primary-45"
         }
         id={id}
         {...props}

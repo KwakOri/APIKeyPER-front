@@ -25,6 +25,7 @@ export default {
           75: "#4f4f4f",
           65: "#54595E",
           55: "#ACACAC",
+          45: "#D1D1D1"
         },
         background: "var(--background)",
         foreground: "var(--foreground)",

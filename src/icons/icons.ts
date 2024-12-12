@@ -3,6 +3,7 @@ import IC_Cancel from "/public/svgs/ic_cancel.svg";
 import IC_Delete from "/public/svgs/ic_delete.svg";
 import IC_Edit from "/public/svgs/ic_edit.svg";
 import IC_ExpiryDate from "/public/svgs/ic_expiry_date.svg";
+import IC_Eye from "/public/svgs/ic_eye.svg";
 import IC_LogIn from "/public/svgs/ic_log_in.svg";
 import IC_LogOut from "/public/svgs/ic_log_out.svg";
 import IC_Menu from "/public/svgs/ic_menu.svg";
@@ -26,6 +27,7 @@ export const IconMap = {
   IC_Send,
   IC_Success,
   IC_Menu,
+  IC_Eye,
 } as const;
 
 export type IconMapTypes = keyof typeof IconMap;
