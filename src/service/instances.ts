@@ -5,7 +5,7 @@ import axios, { AxiosError } from "axios";
 export const privateInstance = axios.create();
 // instance.defaults.headers["Access-Control-Allow-Credentials"] = true;
 privateInstance.defaults.withCredentials = true;
-privateInstance.defaults.baseURL = "http://localhost:3000/api";
+privateInstance.defaults.baseURL = process.env.NEXT_PUBLIC_SERVER_DOMAIN;
 privateInstance.interceptors.request.use(
   (config) => {
     const accessToken = getAccessToken();
@@ -44,7 +44,7 @@ privateInstance.interceptors.response.use(
 
 export const publicInstance = axios.create();
 publicInstance.defaults.withCredentials = true;
-publicInstance.defaults.baseURL = "http://localhost:3000/api";
+publicInstance.defaults.baseURL = process.env.NEXT_PUBLIC_SERVER_DOMAIN;
 publicInstance.interceptors.request.use(
   (config) => {
     config.headers["Content-Type"] = "application/json";
