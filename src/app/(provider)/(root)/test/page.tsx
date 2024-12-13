@@ -1,11 +1,15 @@
 "use client";
 
-import { logIn } from "@/service/service.auth";
+import { logOut } from "@/service/service.auth";
 import { getAllTokenData } from "@/service/service.tokenData";
 import { handleAllowNotification } from "@/utils/firebase/firebaseUtils";
+import { getPagePath } from "@/utils/urls/getPathname";
+import { useMutation } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function Home() {
+  const router = useRouter();
   console.log("re-rendering");
   const [fcmToken, setFcmToken] = useState<string | null>(null);
   const [accessToken, setAccessToken] = useState<string | null>(null);
@@ -29,10 +33,16 @@ export default function Home() {
     setIsPending(false);
   }, [isPending]);
 
-  const handleLogIn = async () => {
-    const accessToken = await logIn();
-    setAccessToken(accessToken);
-    setIsPending(true);
+  const { mutate } = useMutation({
+    mutationFn: logOut,
+    onSuccess: () => {
+      alert("로그아웃되었습니다.");
+      router.replace(getPagePath.logInPage());
+    },
+  });
+
+  const handleLogOut = () => {
+    mutate();
   };
 
   return (
@@ -51,9 +61,9 @@ export default function Home() {
         <p>현재 유저 : {userId}</p>
         <button
           className="p-2 bg-white text-black rounded-full"
-          onClick={handleLogIn}
+          onClick={handleLogOut}
         >
-          로그인하기
+          로그아웃
         </button>
         <button
           className="p-2 bg-white text-black rounded-full"

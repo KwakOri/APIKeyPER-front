@@ -1,5 +1,6 @@
 "use client";
 
+import FloatingButton from "@/components/FloatingButton/FloatingButton";
 import Loading from "@/components/Loading";
 import PageNavBar from "@/components/PageNavBar";
 import TokenList from "@/components/TokenList";
@@ -25,6 +26,9 @@ const HomePage = () => {
 
   return (
     <Mobile>
+      <div className="absolute right-2 bottom-2 ">
+        <FloatingButton />
+      </div>
       <PageNavBar />
       <div className="px-2 pt-4 pb-8 flex flex-col gap-8">
         <TokenList title={"Keys expiring soon"} tokens={expiringSoonTokens} />
