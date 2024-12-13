@@ -9,7 +9,7 @@ const TokenData = ({ tokenData }: TokenDataProps) => {
   const {
     id,
     tokenName,
-    tokenFrom,
+    tokenDescription,
     tokenValue,
     tokenCreatedDate,
     tokenExpiryDate,
@@ -25,7 +25,9 @@ const TokenData = ({ tokenData }: TokenDataProps) => {
           <h3 className="text-[14px] text-primary-95 font-semibold">
             {tokenName}
           </h3>
-          <p className="text-sm font-medium text-primary-55">{tokenFrom}</p>
+          <p className="text-sm font-medium text-primary-55">
+            {tokenDescription}
+          </p>
         </div>
       </div>
 

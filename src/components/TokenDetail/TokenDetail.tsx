@@ -5,6 +5,7 @@ import CancelButton from "@/components/Buttons/CancelButton";
 import Input from "@/components/Input";
 import SVGIcon from "@/components/SVGIcon";
 import { TokenSchema } from "@/data";
+import { getPagePath } from "@/utils/urls/getPathname";
 import dayjs from "dayjs";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -19,7 +20,7 @@ const TokenDetail = ({ tokenData }: TokenDetailProps) => {
   const {
     id,
     tokenName,
-    tokenFrom,
+    tokenDescription,
     tokenValue,
     tokenCreatedDate,
     tokenExpiryDate,
@@ -28,8 +29,16 @@ const TokenDetail = ({ tokenData }: TokenDetailProps) => {
   } = tokenData;
   const router = useRouter();
   const handleBackButtonClick = () => router.back();
-  const handleCopyButtonClick = () => {};
-  const handleEditButtonClick = () => {};
+  const handleCopyButtonClick = async () => {
+    try {
+      await navigator.clipboard.writeText(tokenValue);
+      alert("copied");
+    } catch (e) {
+      alert("failed");
+    }
+  };
+  const handleEditButtonClick = () =>
+    router.push(getPagePath.tokenEditPage({ id }));
   const handleDeleteButtonClick = () => {};
 
   return (
@@ -45,7 +54,7 @@ const TokenDetail = ({ tokenData }: TokenDetailProps) => {
         <div className="bg-primary-55 w-10 h-10 rounded-lg"></div>
         <div className="flex flex-col gap-2 items-start grow">
           <h3 className="text-xl text-primary-85 font-semibold">{tokenName}</h3>
-          <p className="text-[14px] text-primary-55">{tokenFrom}</p>
+          <p className="text-[14px] text-primary-55">{tokenDescription}</p>
         </div>
       </div>
       <div className="flex justify-around px-1">
@@ -67,8 +76,8 @@ const TokenDetail = ({ tokenData }: TokenDetailProps) => {
       <Input
         label={"key"}
         id={"key"}
-        defaultValue={tokenValue}
-        type={isAuthorized ? "text" : "password"}
+        value={isAuthorized ? tokenValue : "**********"}
+        type={"text"}
         disabled={true}
       />
       {isAuthorized ? (

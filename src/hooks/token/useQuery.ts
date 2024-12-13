@@ -6,3 +6,8 @@ export const useAllTokenData = () =>
   useQuery<{ data: TokenSchema[] }, Error, TokenSchema[]>(
     queryOptions.tokens()
   );
+
+export const useTokenData = ({ id }: { id: string }) =>
+  useQuery<{ data: TokenSchema }, Error, TokenSchema>(
+    queryOptions.token({ id })
+  );

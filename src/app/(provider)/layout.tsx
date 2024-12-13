@@ -1,4 +1,4 @@
-import QueryProviders from "@/tanstack/queryProvider";
+import QueryProviders from "@/tanstack/QueryProvider";
 import { PropsWithChildren } from "react";
 
 const ProviderLayout = ({ children }: PropsWithChildren) => {

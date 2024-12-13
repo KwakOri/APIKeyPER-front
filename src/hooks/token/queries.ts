@@ -1,5 +1,5 @@
 import { TokenSchema } from "@/data";
-import { getAllTokenData } from "@/service/service.tokenData";
+import { getAllTokenData, getTokenData } from "@/service/service.tokenData";
 
 export const queryKeys = {
   all: ["token"] as const,
@@ -18,6 +18,13 @@ export const queryOptions = {
           new Date(a.tokenExpiryDate).getTime() -
           new Date(b.tokenExpiryDate).getTime()
       );
+    },
+  }),
+  token: ({ id }: { id: string }) => ({
+    queryKey: queryKeys.token({ id }),
+    queryFn: () => getTokenData({ id }),
+    select: (data: { data: TokenSchema }) => {
+      return data.data;
     },
   }),
 };

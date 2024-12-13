@@ -1,34 +1,76 @@
+"use client";
+
 import Button from "@/components/Buttons/Button";
 import Input from "@/components/Input";
+import { TokenSchema } from "@/data";
+import { useForm } from "@/hooks/inputs/useForm";
 import dayjs from "dayjs";
 
-const TokenForm = () => {
+interface TokenFormProps {
+  values?: TokenSchema;
+  onSubmit: ({ formData }: { formData: TokenSchema }) => void;
+}
+
+const defaultValue: TokenSchema = {
+  id: "",
+  createdAt: new Date(),
+  notificationOption: "",
+  tokenCreatedDate: dayjs().toDate(),
+  tokenExpiryDate: dayjs()
+    .add(100, "day")
+    .toDate(),
+  tokenDescription: "",
+  tokenName: "",
+  tokenValue: "",
+};
+
+const TokenForm = ({ onSubmit, values: existingValue }: TokenFormProps) => {
+  const [values, onChange] = useForm<TokenSchema>({
+    initialValue: existingValue || defaultValue,
+  });
+  const handleSubmit = () => {
+    values;
+  };
   return (
-    <form className="flex flex-col gap-4">
-      <Input label="Title" id={"title"} placeholder={"API Key"} />
+    <form className=" w-full flex flex-col gap-2">
+      <Input
+        label="Title"
+        id={"tokenName"}
+        placeholder={"API Key"}
+        onChange={onChange}
+        value={values.tokenName}
+      />
       <Input
         label="Description"
-        id={"description"}
+        id={"tokenDescription"}
         placeholder={"This is a very important api key."}
+        onChange={onChange}
+        value={values.tokenDescription}
       />
-      <div className="flex gap-4 h-full">
-        <Input
-          className="grow"
-          label="Created Date"
-          id={"createdDate"}
-          placeholder={dayjs().format("YY.MM.DD")}
-        />
-        <Input
-          className="grow"
-          label="Expiry Date"
-          id={"expiryDate"}
-          placeholder={dayjs()
-            .add(1, "year")
-            .format("YY.MM.DD")}
-        />
-      </div>
-      <Input label="Key" id={"key"} placeholder={"API secret key "} />
-      <Button type="submit">
+      <Input
+        className="grow"
+        label="Created Date"
+        id={"tokenCreatedDate"}
+        type={"date"}
+        onChange={onChange}
+        value={dayjs(values.tokenCreatedDate).format("YYYY-MM-DD")}
+      />
+      <Input
+        className="grow"
+        label="Expiry Date"
+        id={"tokenExpiryDate"}
+        type={"date"}
+        onChange={onChange}
+        value={dayjs(values.tokenExpiryDate).format("YYYY-MM-DD")}
+      />
+      <Input
+        label="Key"
+        id={"tokenValue"}
+        placeholder={"API secret key"}
+        onChange={onChange}
+        value={values.tokenValue}
+      />
+      <Button className="mt-2" onClick={handleSubmit}>
         <p>DONE</p>
       </Button>
     </form>

@@ -2,26 +2,19 @@
 
 import Loading from "@/components/Loading";
 import TokenDetail from "@/components/TokenDetail";
-import { dummyTokens } from "@/data";
+import { useTokenData } from "@/hooks/token/useQuery";
 import Mobile from "@/layouts/Mobile";
-import { getTokenData } from "@/service/service.tokenData";
-import { useQuery } from "@tanstack/react-query";
 import { useParams } from "next/navigation";
 
 const TokenDetailPage = () => {
   const { id } = useParams();
-  const tokenData = dummyTokens.find((token) => token.id === id);
-  const { data, isPending } = useQuery({
-    queryKey: ["token", id],
-    queryFn: () => getTokenData({ id: id as string }),
-  });
-  console.log(data?.data);
 
-  if (isPending) return <Loading />;
+  const { data: tokenData, isPending } = useTokenData({ id: id as string });
+  if (isPending || !tokenData) return <Loading />;
   return (
     <Mobile>
       <div className="w-full h-full flex justify-center items-center px-4">
-        {tokenData && <TokenDetail tokenData={data?.data} />}
+        {tokenData && <TokenDetail tokenData={tokenData} />}
       </div>
     </Mobile>
   );
