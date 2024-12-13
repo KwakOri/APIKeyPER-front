@@ -8,7 +8,7 @@ import dayjs from "dayjs";
 
 interface TokenFormProps {
   values?: TokenSchema;
-  onSubmit: ({ formData }: { formData: TokenSchema }) => void;
+  onSubmit: (formData: TokenSchema) => void;
 }
 
 const defaultValue: TokenSchema = {
@@ -22,6 +22,7 @@ const defaultValue: TokenSchema = {
   tokenDescription: "",
   tokenName: "",
   tokenValue: "",
+  userId: "",
 };
 
 const TokenForm = ({ onSubmit, values: existingValue }: TokenFormProps) => {

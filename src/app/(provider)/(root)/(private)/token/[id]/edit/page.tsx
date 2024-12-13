@@ -33,7 +33,7 @@ const TokenEditPage = () => {
             </h2>
             <p className="text-[14px] text-primary-55">Edit the key</p>
           </div>
-          <TokenForm values={tokenData} />
+          <TokenForm values={tokenData} onSubmit={} />
         </div>
       </div>
     </Mobile>

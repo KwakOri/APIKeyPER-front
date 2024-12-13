@@ -2,7 +2,9 @@
 
 import SVGIcon from "@/components/SVGIcon";
 import TokenForm from "@/components/TokenForm";
+import { useTokenPost } from "@/hooks/token/useQuery";
 import Mobile from "@/layouts/Mobile";
+import { useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 
 const WritingTokenPage = () => {
@@ -10,6 +12,8 @@ const WritingTokenPage = () => {
   const handleBackButtonClick = () => {
     router.back();
   };
+  const queryClient = useQueryClient();
+  const { mutate } = useTokenPost(queryClient);
 
   return (
     <Mobile>
@@ -26,7 +30,7 @@ const WritingTokenPage = () => {
             </h2>
             <p className="text-[14px] text-primary-55">Edit the key</p>
           </div>
-          <TokenForm />
+          <TokenForm onSubmit={mutate} />
         </div>
       </div>
     </Mobile>
