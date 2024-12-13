@@ -6,7 +6,7 @@ export const getAccessToken = () => {
 };
 
 export const tokenRefresh = async (instance: AxiosInstance) => {
-  const res = await instance.get("/refresh");
+  const res = await instance.get("/auth/refresh");
 
   const resHeader = res.headers["authorization"] as string;
 

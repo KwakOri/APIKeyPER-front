@@ -52,13 +52,15 @@ const TokenDetail = ({ tokenData }: TokenDetailProps) => {
         <div className="grow">
           <h4 className="text-sm text-primary-55 ">Created Date</h4>
           <p className="text-primary-85 font-semibold">
-            {dayjs(tokenCreatedDate).format("YY.MM.DD")}
+            {tokenCreatedDate
+              ? dayjs(tokenCreatedDate).format("YY.MM.DD")
+              : "-"}
           </p>
         </div>
         <div className="grow">
           <h4 className="text-sm text-primary-55 ">Expiry Date</h4>
           <p className="text-primary-85 font-semibold">
-            {dayjs(tokenExpiryDate).format("YY.MM.DD")}
+            {tokenExpiryDate ? dayjs(tokenExpiryDate).format("YY.MM.DD") : "-"}
           </p>
         </div>
       </div>

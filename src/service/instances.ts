@@ -1,4 +1,4 @@
-import { logOut } from "@/service/auth";
+import { logOut } from "@/service/service.auth";
 import { getAccessToken, tokenRefresh } from "@/utils/auth";
 import axios, { AxiosError } from "axios";
 
@@ -20,7 +20,7 @@ privateInstance.interceptors.request.use(
     return config;
   },
   (error: AxiosError) => {
-    // console.log(error);
+    console.log(error);
     return Promise.reject(error);
   }
 );

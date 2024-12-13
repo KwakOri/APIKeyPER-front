@@ -1,7 +1,7 @@
 "use client";
 
-import { logIn } from "@/service/auth";
-import { getMyTokenDatas } from "@/service/tokenData";
+import { logIn } from "@/service/service.auth";
+import { getAllTokenData } from "@/service/service.tokenData";
 import { handleAllowNotification } from "@/utils/firebase/firebaseUtils";
 import { useEffect, useState } from "react";
 
@@ -57,7 +57,7 @@ export default function Home() {
         </button>
         <button
           className="p-2 bg-white text-black rounded-full"
-          onClick={getMyTokenDatas}
+          onClick={getAllTokenData}
         >
           내 토큰 조회하기
         </button>
