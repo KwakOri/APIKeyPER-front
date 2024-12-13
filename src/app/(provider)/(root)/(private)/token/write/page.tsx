@@ -13,8 +13,7 @@ const WritingTokenPage = () => {
     router.back();
   };
   const queryClient = useQueryClient();
-  const { mutate } = useTokenPost(queryClient);
-
+  const { mutate } = useTokenPost(queryClient, router);
   return (
     <Mobile>
       <div className="w-full h-full flex flex-col justify-center items-center p-4">

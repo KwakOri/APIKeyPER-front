@@ -1,7 +1,9 @@
 import { TokenSchema } from "@/data";
 import { queryOptions, tokenQueryKeys } from "@/hooks/token/queries";
-import { postTokenData } from "@/service/service.tokenData";
+import { postTokenData, updateTokenData } from "@/service/service.tokenData";
+import { getPagePath } from "@/utils/urls/getPathname";
 import { QueryClient, useMutation, useQuery } from "@tanstack/react-query";
+import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 
 export const useAllTokenData = () =>
   useQuery<{ data: TokenSchema[] }, Error, TokenSchema[]>(
@@ -13,10 +15,28 @@ export const useTokenData = ({ id }: { id: string }) =>
     queryOptions.token({ id })
   );
 
-export const useTokenPost = (queryClient: QueryClient) =>
+export const useTokenPost = (
+  queryClient: QueryClient,
+  router: AppRouterInstance
+) =>
   useMutation({
     mutationFn: (tokenData: TokenSchema) => postTokenData({ tokenData }),
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: tokenQueryKeys.all });
+      alert("저장되었습니다.");
+      router.replace(getPagePath.homePage());
+    },
+  });
+
+export const useTokenUpdate = (
+  queryClient: QueryClient,
+  router: AppRouterInstance
+) =>
+  useMutation({
+    mutationFn: (tokenData: TokenSchema) => updateTokenData({ tokenData }),
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({ queryKey: tokenQueryKeys.all });
+      alert("수정되었습니다.");
+      router.replace(getPagePath.homePage());
     },
   });

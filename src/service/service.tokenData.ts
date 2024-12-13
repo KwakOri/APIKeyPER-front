@@ -27,3 +27,20 @@ export const postTokenData = async ({
   const result = await privateInstance.post(`/token`, body);
   return result;
 };
+
+export const updateTokenData = async ({
+  tokenData,
+}: {
+  tokenData: TokenSchema;
+}) => {
+  const body = {
+    tokenName: tokenData.tokenName,
+    tokenDescription: tokenData.tokenDescription,
+    tokenValue: tokenData.tokenValue,
+    tokenCreatedDate: tokenData.tokenCreatedDate,
+    tokenExpiryDate: tokenData.tokenExpiryDate,
+    notificationOption: tokenData.notificationOption,
+  };
+  const result = await privateInstance.put(`/token/${tokenData.id}`, body);
+  return result;
+};

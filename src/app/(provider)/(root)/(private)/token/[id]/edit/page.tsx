@@ -3,8 +3,9 @@
 import Loading from "@/components/Loading";
 import SVGIcon from "@/components/SVGIcon";
 import TokenForm from "@/components/TokenForm";
-import { useTokenData } from "@/hooks/token/useQuery";
+import { useTokenData, useTokenUpdate } from "@/hooks/token/useQuery";
 import Mobile from "@/layouts/Mobile";
+import { useQueryClient } from "@tanstack/react-query";
 import { useParams, useRouter } from "next/navigation";
 
 const TokenEditPage = () => {
@@ -16,6 +17,9 @@ const TokenEditPage = () => {
   const { id } = useParams();
 
   const { data: tokenData, isPending } = useTokenData({ id: id as string });
+
+  const queryClient = useQueryClient();
+  const { mutate } = useTokenUpdate(queryClient, router);
 
   if (isPending || !tokenData) return <Loading />;
   return (
@@ -33,7 +37,7 @@ const TokenEditPage = () => {
             </h2>
             <p className="text-[14px] text-primary-55">Edit the key</p>
           </div>
-          <TokenForm values={tokenData} onSubmit={} />
+          <TokenForm values={tokenData} onSubmit={mutate} />
         </div>
       </div>
     </Mobile>

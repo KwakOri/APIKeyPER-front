@@ -30,10 +30,10 @@ const TokenForm = ({ onSubmit, values: existingValue }: TokenFormProps) => {
     initialValue: existingValue || defaultValue,
   });
   const handleSubmit = () => {
-    values;
+    onSubmit(values);
   };
   return (
-    <form className=" w-full flex flex-col gap-2">
+    <div className=" w-full flex flex-col gap-2">
       <Input
         label="Title"
         id={"tokenName"}
@@ -74,7 +74,7 @@ const TokenForm = ({ onSubmit, values: existingValue }: TokenFormProps) => {
       <Button className="mt-2" onClick={handleSubmit}>
         <p>DONE</p>
       </Button>
-    </form>
+    </div>
   );
 };
 

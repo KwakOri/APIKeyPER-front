@@ -1,16 +1,19 @@
 import { TokenSchema } from "@/data";
 import { getAllTokenData, getTokenData } from "@/service/service.tokenData";
 
-export const queryKeys = {
+export const tokenQueryKeys = {
   all: ["token"] as const,
-  tokens: () => [...queryKeys.all, "all"],
-  token: ({ id }: { id: string }) => [...queryKeys.all, id],
-  sortedTokens: ({ sortBy }: { sortBy: string }) => [...queryKeys.all, sortBy],
+  tokens: () => [...tokenQueryKeys.all, "all"],
+  token: ({ id }: { id: string }) => [...tokenQueryKeys.all, id],
+  sortedTokens: ({ sortBy }: { sortBy: string }) => [
+    ...tokenQueryKeys.all,
+    sortBy,
+  ],
 };
 
 export const queryOptions = {
   tokens: () => ({
-    queryKey: queryKeys.tokens(),
+    queryKey: tokenQueryKeys.tokens(),
     queryFn: getAllTokenData,
     select: (data: { data: TokenSchema[] }) => {
       return data.data.sort(
@@ -21,7 +24,7 @@ export const queryOptions = {
     },
   }),
   token: ({ id }: { id: string }) => ({
-    queryKey: queryKeys.token({ id }),
+    queryKey: tokenQueryKeys.token({ id }),
     queryFn: () => getTokenData({ id }),
     select: (data: { data: TokenSchema }) => {
       return data.data;
