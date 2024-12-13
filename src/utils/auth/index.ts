@@ -1,11 +1,12 @@
 import { AxiosInstance } from "axios";
 
 export const getAccessToken = () => {
+  if (!localStorage) return undefined;
   return localStorage.getItem("ACCESS_TOKEN");
 };
 
 export const tokenRefresh = async (instance: AxiosInstance) => {
-  const res = await instance.get("/refresh");
+  const res = await instance.get("/auth/refresh");
 
   const resHeader = res.headers["authorization"] as string;
 
