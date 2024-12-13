@@ -34,13 +34,13 @@ const TokenDetail = ({ tokenData }: TokenDetailProps) => {
   const queryClient = useQueryClient();
   const { mutate } = useTokenDelete(queryClient, router);
 
-  const handleBackButtonClick = () => router.back();
+  const handleBackButtonClick = () => router.replace(getPagePath.homePage());
   const handleCopyButtonClick = async () => {
     try {
       await navigator.clipboard.writeText(tokenValue);
-      alert("copied");
+      alert("복사되었습니다.");
     } catch (e) {
-      alert("failed");
+      alert("복사에 실패했습니다.");
     }
   };
   const handleEditButtonClick = () =>
