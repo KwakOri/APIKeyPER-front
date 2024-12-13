@@ -1,8 +1,8 @@
 import type { Config } from "tailwindcss";
+import { PluginAPI } from "tailwindcss/types/config";
 
 export default {
   content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/layouts/**/*.{js,ts,jsx,tsx,mdx}",
@@ -10,12 +10,12 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        pretendard: ['var(--font-pretendard)'],
+        pretendard: ["var(--font-pretendard)"],
       },
       colors: {
         intent: {
           expired: "#A1A1A1",
-          dangerous:"#FF3535",
+          dangerous: "#FF3535",
           warning: "#FF9925",
           safe: "#3BDB39",
         },
@@ -25,12 +25,23 @@ export default {
           75: "#4f4f4f",
           65: "#54595E",
           55: "#ACACAC",
-          45: "#D1D1D1"
+          45: "#D1D1D1",
         },
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
     },
   },
-  plugins: [],
+  plugins: [
+    ({ addUtilities }: PluginAPI) => {
+      addUtilities({
+        ".custom-shadow-small": {
+          "box-shadow":
+            "0px 0px 2px 0px rgba(0, 0, 0, 0.12), 0px 20px 20px 0px rgba(0, 0, 0, 0.08)",
+        },
+      });
+    },
+  ],
 } satisfies Config;
+
+

@@ -5,6 +5,7 @@ import {
   IconMap,
   IconMapTypes,
   IconSizes,
+  IconSizeTypes,
 } from "@/icons/icons";
 import { cn } from "@/utils/tailwind/cn";
 import { cva, VariantProps } from "class-variance-authority";
@@ -23,7 +24,7 @@ const SVGIconVariants = cva("fill-label-neutral", {
 });
 
 interface SVGIconProps extends VariantProps<typeof SVGIconVariants> {
-  size?: "lg" | "md" | "sm";
+  size?: IconSizeTypes;
   className?: string;
 }
 

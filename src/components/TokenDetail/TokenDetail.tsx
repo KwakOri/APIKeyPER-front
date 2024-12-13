@@ -1,6 +1,7 @@
 "use client";
 
 import Button from "@/components/Buttons/Button";
+import CancelButton from "@/components/Buttons/CancelButton";
 import Input from "@/components/Input";
 import SVGIcon from "@/components/SVGIcon";
 import { TokenSchema } from "@/data";
@@ -34,13 +35,11 @@ const TokenDetail = ({ tokenData }: TokenDetailProps) => {
   return (
     <article
       className={
-        "rounded-lg px-10 py-9 flex flex-col gap-6 w-full border border-primary-45"
+        "rounded-lg px-10 py-9 flex flex-col gap-6 w-full border border-primary-45 custom-shadow-small"
       }
     >
       <div className="w-full flex justify-end">
-        <button onClick={handleBackButtonClick}>
-          <SVGIcon icon={"IC_Cancel"} />
-        </button>
+        <CancelButton onClick={handleBackButtonClick} />
       </div>
       <div className="flex gap-4 items-center">
         <div className="bg-primary-55 w-10 h-10 rounded-lg"></div>

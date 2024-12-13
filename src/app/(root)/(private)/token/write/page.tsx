@@ -14,7 +14,7 @@ const WritingTokenPage = () => {
   return (
     <Mobile>
       <div className="w-full h-full flex flex-col justify-center items-center p-4">
-        <div className="flex flex-col px-10 py-9 gap-6 border border-primary-45 rounded-lg">
+        <div className="flex flex-col px-10 py-9 gap-6 border border-primary-45 rounded-lg custom-shadow-small">
           <div className="w-full flex justify-end">
             <button onClick={handleBackButtonClick}>
               <SVGIcon icon={"IC_Cancel"} />

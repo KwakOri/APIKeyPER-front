@@ -1,6 +1,7 @@
 import { AxiosInstance } from "axios";
 
 export const getAccessToken = () => {
+  if (!localStorage) return undefined;
   return localStorage.getItem("ACCESS_TOKEN");
 };
 
