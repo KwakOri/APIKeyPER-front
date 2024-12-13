@@ -44,3 +44,8 @@ export const updateTokenData = async ({
   const result = await privateInstance.put(`/token/${tokenData.id}`, body);
   return result;
 };
+
+export const deleteTokenData = async ({ id }: { id: string }) => {
+  const result = await privateInstance.delete(`/token/${id}`);
+  return result;
+};

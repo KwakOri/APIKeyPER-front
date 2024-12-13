@@ -5,7 +5,9 @@ import CancelButton from "@/components/Buttons/CancelButton";
 import Input from "@/components/Input";
 import SVGIcon from "@/components/SVGIcon";
 import { TokenSchema } from "@/data";
+import { useTokenDelete } from "@/hooks/token/useQuery";
 import { getPagePath } from "@/utils/urls/getPathname";
+import { useQueryClient } from "@tanstack/react-query";
 import dayjs from "dayjs";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -27,7 +29,11 @@ const TokenDetail = ({ tokenData }: TokenDetailProps) => {
     notificationOption,
     createdAt,
   } = tokenData;
+
   const router = useRouter();
+  const queryClient = useQueryClient();
+  const { mutate } = useTokenDelete(queryClient, router);
+
   const handleBackButtonClick = () => router.back();
   const handleCopyButtonClick = async () => {
     try {
@@ -39,7 +45,11 @@ const TokenDetail = ({ tokenData }: TokenDetailProps) => {
   };
   const handleEditButtonClick = () =>
     router.push(getPagePath.tokenEditPage({ id }));
-  const handleDeleteButtonClick = () => {};
+  const handleDeleteButtonClick = () => {
+    const isOk = confirm("정말 삭제하시겠습니까?");
+    if (!isOk) return;
+    mutate(id);
+  };
 
   return (
     <article
