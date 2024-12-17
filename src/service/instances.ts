@@ -48,7 +48,7 @@ publicInstance.defaults.baseURL = process.env.NEXT_PUBLIC_SERVER_DOMAIN;
 publicInstance.interceptors.request.use(
   (config) => {
     config.headers["Content-Type"] = "application/json";
-
+    config.headers["Authorization"] = `Bearer null`;
     return config;
   },
   (error: AxiosError) => {
