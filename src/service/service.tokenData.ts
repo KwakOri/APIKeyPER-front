@@ -7,8 +7,9 @@ export const getAllTokenData = async () => {
 };
 
 export const getTokenData = async ({ id }: { id: string }) => {
-  const { data } = await privateInstance.get(`/token/${id}`);
-  return data;
+  const res = await privateInstance.get(`/token/${id}`);
+  console.log(res);
+  return res.data;
 };
 
 export const postTokenData = async ({
