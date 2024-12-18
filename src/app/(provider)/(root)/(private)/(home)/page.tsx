@@ -31,7 +31,7 @@ const HomePage = () => {
         <FloatingButton />
       </div>
       <PageNavBar />
-      <div className="px-2 pt-4 pb-8 flex flex-col gap-8">
+      <div className="px-2 pt-20 pb-8 flex flex-col gap-8">
         <TokenList
           title={"Keys expiring soon"}
           tokens={getExpiringSoonTokens(tokens)}
