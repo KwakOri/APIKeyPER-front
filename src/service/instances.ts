@@ -15,8 +15,6 @@ privateInstance.interceptors.request.use(
     }
     config.headers["Content-Type"] = "application/json";
     config.headers["Authorization"] = `Bearer ${accessToken}`;
-    // console.log(config);
-
     return config;
   },
   (error: AxiosError) => {
@@ -42,6 +40,7 @@ privateInstance.interceptors.response.use(
         console.log(err);
       }
     } else if (error.response?.status === 401) {
+      alert("인증정보가 만료되었습니다.");
       logOut();
     }
   }
