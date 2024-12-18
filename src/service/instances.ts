@@ -34,6 +34,7 @@ privateInstance.interceptors.response.use(
     if (error.response?.status === 403) {
       const accessToken = await tokenRefresh(privateInstance);
       error.config.headers.Authorization = `Bearer ${accessToken}`;
+      console.log("accessToken refreshed");
       // 중단된 요청을(에러난 요청)을 토큰 갱신 후 재요청
       return privateInstance(error.config);
     } else if (error.response?.status === 401) {
