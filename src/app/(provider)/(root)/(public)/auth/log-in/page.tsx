@@ -25,7 +25,7 @@ const initialValue: LogInFormTypes = {
 const LogInPage = () => {
   const [values, onChange] = useForm<LogInFormTypes>({ initialValue });
   const router = useRouter();
-  const { mutate, isPending } = useMutation({
+  const { mutate, isPending, isSuccess } = useMutation({
     mutationFn: (formData: LogInFormTypes) => logIn(formData),
     onSuccess: () => {
       alert("로그인되었습니다.");
@@ -39,7 +39,7 @@ const LogInPage = () => {
     mutate(values);
   };
 
-  if (isPending) return <Loading />;
+  if (isPending || isSuccess) return <Loading />;
 
   return (
     <Mobile>
