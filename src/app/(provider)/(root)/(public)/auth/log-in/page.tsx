@@ -2,6 +2,7 @@
 
 import Button from "@/components/Buttons/Button";
 import Input from "@/components/Input";
+import Loading from "@/components/Loading";
 import PageTitle from "@/components/PageTitle";
 import { useForm } from "@/hooks/inputs/useForm";
 import Mobile from "@/layouts/Mobile";
@@ -24,7 +25,7 @@ const initialValue: LogInFormTypes = {
 const LogInPage = () => {
   const [values, onChange] = useForm<LogInFormTypes>({ initialValue });
   const router = useRouter();
-  const { mutate } = useMutation({
+  const { mutate, isPending } = useMutation({
     mutationFn: (formData: LogInFormTypes) => logIn(formData),
     onSuccess: () => {
       alert("로그인되었습니다.");
@@ -37,6 +38,8 @@ const LogInPage = () => {
   const handleClickLogInButton = () => {
     mutate(values);
   };
+
+  if (isPending) return <Loading />;
 
   return (
     <Mobile>
