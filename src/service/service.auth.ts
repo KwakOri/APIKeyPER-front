@@ -29,7 +29,7 @@ export const logIn = async (formData: LogInFormTypes) => {
 };
 
 export const logOut = async () => {
-  const res = await privateInstance.delete("/auth/log-out");
   localStorage.removeItem("ACCESS_TOKEN");
+  const res = await privateInstance.delete("/auth/log-out");
   return res;
 };
