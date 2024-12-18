@@ -6,7 +6,7 @@ import Link from "next/link";
 import { Fragment } from "react";
 
 interface TokenListProps {
-  tokens: TokenSchema[] | undefined;
+  tokens: TokenSchema[];
   title: string;
 }
 
@@ -14,7 +14,7 @@ const TokenList = ({ tokens, title }: TokenListProps) => {
   return (
     <section className="flex flex-col gap-4">
       <SectionTitle>{title}</SectionTitle>
-      {!tokens ? (
+      {tokens.length === 0 ? (
         <p className="text-primary-85">데이터가 없습니다</p>
       ) : (
         <ul className="flex flex-col gap-2">
