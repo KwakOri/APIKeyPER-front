@@ -1,5 +1,6 @@
 import Divider from "@/components/Divider/Divider";
 import DropdownSelect from "@/components/Dropdown/DropdownSelect";
+import { getFCMToken } from "@/service/service.account";
 import { logOut } from "@/service/service.auth";
 import { cn } from "@/utils/tailwind/cn";
 import { cva, VariantProps } from "class-variance-authority";
@@ -27,12 +28,19 @@ const Dropdown = ({ active }: DropdownProps) => {
   const handleClickAddKeyButton = () => {
     router.push("/token/write");
   };
+
   return (
     <div className={cn(dropdownVariants({ active }))}>
       <DropdownSelect
-        icon="IC_Plus"
+        icon="IC_Edit"
         label="새로운 KEY 추가하기"
         onClick={handleClickAddKeyButton}
+      />
+      <Divider />
+      <DropdownSelect
+        icon="IC_Plus"
+        label="알림 등록하기"
+        onClick={getFCMToken}
       />
       <Divider />
       <DropdownSelect
