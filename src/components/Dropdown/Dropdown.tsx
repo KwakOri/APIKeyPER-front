@@ -10,8 +10,8 @@ const dropdownVariants = cva(
   {
     variants: {
       active: {
-        true: `-translate-y-full`,
-        false: `-translate-y-0`,
+        false: `-translate-y-full`,
+        true: `-translate-y-0`,
       },
     },
   }
