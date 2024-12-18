@@ -10,8 +10,6 @@ import Mobile from "@/layouts/Mobile";
 
 const HomePage = () => {
   const { data: tokens, isPending } = useAllTokenData();
-  console.log(isPending);
-
   const getExpiringSoonTokens = (tokens: TokenSchema[]) => {
     if (tokens.length === 0) return [];
     return tokens
