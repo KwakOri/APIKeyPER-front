@@ -6,7 +6,7 @@ import Link from "next/link";
 import { Fragment } from "react";
 
 interface TokenListProps {
-  tokens: TokenSchema[] | null;
+  tokens: TokenSchema[] | undefined;
   title: string;
 }
 

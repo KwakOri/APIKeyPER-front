@@ -22,7 +22,7 @@ const HomePage = () => {
         .slice(0, 4)
     : [];
 
-  if (isPending || !tokens) return <Loading />;
+  if (isPending) return <Loading />;
 
   return (
     <Mobile>
