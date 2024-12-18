@@ -16,9 +16,7 @@ const defaultValue: TokenSchema = {
   createdAt: new Date(),
   notificationOption: "",
   tokenCreatedDate: dayjs().toDate(),
-  tokenExpiryDate: dayjs()
-    .add(100, "day")
-    .toDate(),
+  tokenExpiryDate: dayjs().add(100, "day").toDate(),
   tokenDescription: "",
   tokenName: "",
   tokenValue: "",

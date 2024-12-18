@@ -25,9 +25,9 @@ const WritingTokenPage = () => {
           </div>
           <div className="flex flex-col items-center">
             <h2 className={"text-[20px] font-semibold text-primary-85"}>
-              Edit the key
+              Add a new key
             </h2>
-            <p className="text-[14px] text-primary-55">Edit the key</p>
+            <p className="text-[14px] text-primary-55">Add a new key</p>
           </div>
           <TokenForm onSubmit={mutate} />
         </div>
