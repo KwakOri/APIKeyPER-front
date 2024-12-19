@@ -48,7 +48,7 @@ privateInstance.interceptors.response.use(
 
 export const publicInstance = axios.create();
 publicInstance.defaults.withCredentials = true;
-publicInstance.defaults.baseURL = process.env.NEXT_PUBLIC_SERVER_DOMAIN;
+publicInstance.defaults.baseURL = `${process.env.NEXT_PUBLIC_SERVER_DOMAIN}/api`;
 publicInstance.interceptors.request.use(
   (config) => {
     config.headers["Content-Type"] = "application/json";
