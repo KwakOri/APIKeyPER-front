@@ -3,7 +3,7 @@ import { cva, VariantProps } from "class-variance-authority";
 import { ButtonHTMLAttributes, PropsWithChildren } from "react";
 
 const buttonVariants = cva(
-  `w-full rounded-lg flex justify-center items-center shrink-0 hover:brightness-150`,
+  `w-full rounded-lg flex justify-center items-center shrink-0 sm:hover:brightness-150`,
   {
     variants: {
       intent: {

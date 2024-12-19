@@ -20,7 +20,7 @@ const TokenList = ({ tokens, title }: TokenListProps) => {
         <ul className="flex flex-col gap-2">
           {tokens.map((token, index) => (
             <Fragment key={token.id}>
-              <li className="p-2 rounded-lg hover:bg-primary-55/20">
+              <li className="p-2 rounded-lg sm:hover:bg-primary-55/20">
                 <Link href={`/token/${token.id}`}>
                   <TokenData tokenData={token} />
                 </Link>

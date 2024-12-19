@@ -90,7 +90,7 @@ const SignUpPage = () => {
             {isEmailValid ? (
               <Button
                 className={
-                  "w-11 border border-primary-45 bg-white hover:brightness-110"
+                  "w-11 border border-primary-45 bg-white sm:hover:brightness-110"
                 }
                 onClick={handleValidateEmail}
               >
