@@ -34,13 +34,14 @@ export async function handleAllowNotification() {
       );
     }
   } catch (error) {
+    alert(error);
     console.error("푸시 토큰 가져오는 중에 에러 발생", error);
   }
 }
 
 export const onMessageListener = () => {
-  // if (typeof window === "undefined" || typeof window.navigator === "undefined")
-  //   return;
+  if (typeof window === "undefined" || typeof window.navigator === "undefined")
+    return;
   const messaging = getMessaging(app);
 
   return new Promise<MessagePayload>((resolve) => {
