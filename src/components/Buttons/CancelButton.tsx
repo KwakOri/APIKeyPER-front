@@ -7,7 +7,7 @@ interface CancelButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const CancelButton = ({ className, ...props }: CancelButtonProps) => {
   return (
-    <button className={`hover:brightness-125 ${className}`} {...props}>
+    <button className={`sm:hover:brightness-125 ${className}`} {...props}>
       <SVGIcon icon={"IC_Cancel"} />
     </button>
   );
