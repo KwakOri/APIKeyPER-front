@@ -5,7 +5,7 @@ import axios, { AxiosError } from "axios";
 export const privateInstance = axios.create();
 // instance.defaults.headers["Access-Control-Allow-Credentials"] = true;
 privateInstance.defaults.withCredentials = true;
-privateInstance.defaults.baseURL = process.env.NEXT_PUBLIC_SERVER_DOMAIN;
+privateInstance.defaults.baseURL = `${process.env.NEXT_PUBLIC_SERVER_DOMAIN}/api`;
 privateInstance.interceptors.request.use(
   (config) => {
     const accessToken = getAccessToken();
