@@ -47,7 +47,7 @@ const TokenForm = ({ onSubmit, values: existingValue }: TokenFormProps) => {
         value={values.tokenDescription}
       />
       <Input
-        className="grow"
+        className="grow appearance-none"
         label="Created Date"
         id={"tokenCreatedDate"}
         type={"date"}
@@ -55,7 +55,7 @@ const TokenForm = ({ onSubmit, values: existingValue }: TokenFormProps) => {
         value={dayjs(values.tokenCreatedDate).format("YYYY-MM-DD")}
       />
       <Input
-        className="grow"
+        className="grow appearance-none"
         label="Expiry Date"
         id={"tokenExpiryDate"}
         type={"date"}
