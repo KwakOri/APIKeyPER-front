@@ -19,6 +19,14 @@ export const signUp = async (formData: SignUpFormTypes) => {
   return res;
 };
 
+export const verifyPassword = async (password: string) => {
+  const body = {
+    password,
+  };
+  const res = await privateInstance.post("/auth/password", body);
+  return res;
+};
+
 export const logIn = async (formData: LogInFormTypes) => {
   const res = await publicInstance.post("/auth/log-in", formData);
   const resHeader = res.headers["authorization"] as string;
